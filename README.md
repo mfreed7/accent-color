@@ -1,2 +1,4 @@
 # accent-color
-CSS accent-color proposal
+
+- [Original study](study.md)
+- [Expanded proposal](proposal2.md)
