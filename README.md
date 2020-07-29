@@ -1,4 +1,4 @@
 # accent-color
 
 - [Original study](study.md)
-- [Expanded proposal](proposal2.md)
+- [Expanded proposal](proposal.md)
