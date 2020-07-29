@@ -29,8 +29,12 @@ The ‘accent-color' CSS property sets the color of the “accent” parts or pi
 form control elements. The first provided &lt;color> value is to be used for
 "foreground" accent elements. If a second &lt;color> value is provided, that color
 should be used for "background" accent elements. If no "background" color is
-provided, the UA should attempt to select an appropriate background color which
-offers good contrast and visibility when paired with the provided foreground color.
+provided, and the control utilizes a "background" color for rendering, then the
+UA should attempt to select an appropriate background color which
+offers good contrast and visibility when paired with the provided foreground
+color. The third and subsequent colors are only used on some form control elements
+in some cases, for additional "accent" parts other than "foreground" or
+"background".
 
 Not all form elements contain “accent” parts, and not all user agents use the same
 “accent” parts in exactly the same way for the same form control. However, the
@@ -40,10 +44,14 @@ in the same way across user agents. This is important to ensure good interop of
 the 'accent-color' property. For that reason, there is a table of form elements
 provided below, which serves as guidance on the various accent parts for each
 control. While the table is not normative, it is intended to provide some
-alignment across user agents.
+alignment and uniformity of implementation across user agents.
 
-The <b>text content</b> of form control elements are explicitly <b>not</b> included in the set
-of “accent” parts, as text content is already controlled by the <a href="https://drafts.csswg.org/css-color/#the-color-property">color</a> property.
+The <b>text content</b> of form control elements is explicitly <b>not</b> included in the set
+of “accent” parts, as text content is already controlled by the <a href="https://drafts.csswg.org/css-color/#the-color-property">'color'</a> property.
+In addition, the <a href="https://drafts.csswg.org/css-backgrounds-3/#background-color">'background-color'</a> property is often used to control the
+rendering for some background parts of form controls - those parts are similarly
+not included in the set of "accent" parts that are subject to control via the
+`accent-color` property.
 
 The default value for the 'accent-color' property is UA-defined. If the operating
 system provides an “Accent Color” user setting, the UA is encouraged to respect
@@ -56,12 +64,7 @@ accessibility.
 
 # Per-Control Guidance
 
-This section is non-normative. It describes the potential accent parts for each
-control, and whether those parts should be styled with the "foreground" and/or
-"background" `accent-color` colors. If a given form control on a given user
-agent has substantially different accent parts, care should be taken to attempt
-to align those parts with the existing set, so that developers using `accent-color`
-will get predictable, interoperable results, as much as possible.
+This section is non-normative. It describes the potential accent parts for each control, and whether those parts should be styled with the "foreground", "background", or "additional" `accent-color` colors. If a given form control on a given user agent has substantially different accent parts, such that the descriptions below do not apply, then care should be taken to attempt to align those parts with the described set, so that developers using `accent-color` will get predictable, interoperable results as much as possible. Note also that some of the described accent parts will not exist on all implementations - in this situation, those elements can be disregarded in the descriptions below.
 
 ## `<input type=checkbox>`
 
@@ -91,7 +94,7 @@ A `<select>` control is typically displayed as a text area containing the
 currently-selected `<option>` text, and an activation "widget" or arrow which is used to pop up the list of options. The `background-color` CSS property is
 typically used as the background behind the currently-selected text display.
 The accent part here is the activation widget/button. The arrow, icon, or
-other widget should be considered the "foreground" accent, while the shaded background behind the widget/button should utilize the "background" accent color.
+other widget should be considered the "foreground" accent, while the shaded background behind the widget/button (if present) should utilize the "background" accent color.
 
 | Sample | CSS |
 |--------|-----|
@@ -132,126 +135,120 @@ A button does not typically have any specific accent pieces. And since `<button>
 
 ## `<input type=range>`
 
-A range input has several potential accent parts. The first is the thumb, which is the part of the `<range>` that the user can drag along the track. The thumb should be considered to be a "foreground" accent. The second is the track that the thumb slides along, which is sometimes shaded differently on one side of the thumb vs. the other. In the case that a single color is used on both sides, the track should be considered a "background" accent. In different colors are used on either side of the thumb, see below. If a `list=datalist` attribute is provided, then tickmarks are typically drawn at the option values given in the datalist - those tick marks should be considered "foreground" accent elements.
-
-Sometimes, a separate color is used to shade the portion of the range between 0 and `range.value`. In this case, this "filled" portion of the track can be controlled with a third `<color>` value for the `accent-color` property:
+A range input has several potential accent parts. One is the thumb, which is the part of the `<range>` that the user can drag along the track. The thumb should be considered to be a "foreground" accent. If a `list=datalist` attribute is set on the `<range>`, then tickmarks are typically also drawn at the option values given in the datalist. Such tick marks should also be considered "foreground" accent elements. The remaining accent element is the track that the thumb slides along, which is sometimes shaded differently on one side of the thumb vs. the other. In the case that a **single** color is used on both sides of the thumb, the track should be considered a "background" accent. Sometimes, a separate color is used to shade the "filled" portion of the range, between 0 and `range.value`. In this case, a third `<color>` value can be used:
 
 ```css
 accent-color: thumb-color track-color filled-track-color
 ```
 
-
-| Sample | CSS |
-|--------|-----|
-| ![Range](proposal_files/range.png) | <pre>accent-color: white darkgrey darkgrey;</pre> |
-
-
-
-<hr>
-Work in progress below...
-
-
-## `<XXXXXXXXXX>`
-
-A XXXX is typically composed of 
-
-| Sample | CSS |
-|--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
-
-
-
-## `<XXXXXXXXXX>`
-
-A XXXX is typically composed of 
+Here, the "filled" portion of the track should be colored with `filled-track-color`.
 
 
 | Sample | CSS |
 |--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
-
-
-## `<XXXXXXXXXX>`
-
-A XXXX is typically composed of 
-
-| Sample | CSS |
-|--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
+| ![Range](proposal_files/range.png) | <pre>accent-color: black lightgrey blue;</pre> |
 
 
 
-## `<XXXXXXXXXX>`
+## `<progress>`
 
-A XXXX is typically composed of 
-
+A progress bar is typically composed of a shaded track, within which a portion of the track is shaded in a different color to indicate the value of the control. The shaded background of the progress bar should be considered a "background" accent, while the filled "value" portion of the progress bar should be considered "foreground".
 
 | Sample | CSS |
 |--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
-
-
-## `<XXXXXXXXXX>`
-
-A XXXX is typically composed of 
-
-| Sample | CSS |
-|--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
+| ![Progress](proposal_files/progress.png) | <pre>accent-color: blue lightgrey;</pre> |
 
 
 
-## `<XXXXXXXXXX>`
+## `<input type=color>`
 
-A XXXX is typically composed of 
+A color picker typically only contains a color swatch displaying the currently-selected color, and a shaded background. In most all cases, the shaded background can be controlled with the `background-color` CSS property. Since no other controls typically exist, `accent-color` will not apply. If, in some implementation, an activation widget/button exists, then that button should be considered a "foreground" element, and any shaded region behind the button should be considered a "background" element.
 
 
 | Sample | CSS |
 |--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
-
-
-## `<XXXXXXXXXX>`
-
-A XXXX is typically composed of 
-
-| Sample | CSS |
-|--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
+| ![Color](proposal_files/color.png) | N/A (`color.value` is red)|
 
 
 
-## `<XXXXXXXXXX>`
 
-A XXXX is typically composed of 
+## `<input type=color list=datalist>`
+
+A color suggestion control, when provided, typically contains a color swatch displaying the currently-selected color, and an activation widget/button that can be used to pop up the suggestions list. The activation widget/button should be considered a "foreground" accent element, while any separately-shaded background behind the widget should be considered to be a "background" element.
 
 
 | Sample | CSS |
 |--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
-
-
-## `<XXXXXXXXXX>`
-
-A XXXX is typically composed of 
-
-| Sample | CSS |
-|--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
+| ![Color Suggestion](proposal_files/color_suggestion.png) | <pre>accent-color: black;</pre> |
 
 
 
-## `<XXXXXXXXXX>`
+## `<input type=file>`
 
-A XXXX is typically composed of 
-
+A file picker is typically composed of a "browse" button and a separate text area for displaying the selected file(s). In most cases, the text area portion can be completely controlled with the `color` and `background-color` CSS properties. The "browse" button, on the other hand, is not typically affected by either property. Therefore, the text and/or widget on the "browse" button should be considered to be the "foreground" element, while the shaded background is the "background" element.
 
 | Sample | CSS |
 |--------|-----|
-| ![XXXXXXX](proposal_files/XXXXXXX.png) | <pre>accent-color: XXXXXXX XXXXXXX</pre> |
+| ![File](proposal_files/file.png) | <pre>accent-color: white green;</pre> |
+
+
+
+## `<textarea>`
+
+A text area is composed of a typically-resizable rectangle for text. In most cases, the lower-right corner (for direction:ltr text) contains a "drag handle" that can be used to resize the text area. This drag handle should be considered a "foreground" accent element. If the drag handle is drawn with a shaded background (not typical), then this background should be considered a "background" accent element.
+
+| Sample | CSS |
+|--------|-----|
+| ![Text Area](proposal_files/textarea.png) | <pre>accent-color: red;</pre> |
 
 
 
 
+## `<input type=date|time|datetime-local|week|month>`
 
+A date/time control is typically composed of a text field that displays the currently-selected date/time, and an activation widget/button which is used to bring up a pop-up "picker". The activation widget/button should be considered a "foreground" accent element, while any separately-shaded background behind the widget should be considered to be a "background" element. Sometimes, the date/time control will contain a "clear" button/widget, used to clear the value of the control. Similarly here, the "clear" button/widget should be considered a "foreground" element, and any separately shaded background behind the widget should be considered a "background" element.
+
+| Sample | CSS |
+|--------|-----|
+| ![Date / Time](proposal_files/date.png) | <pre>accent-color: green;</pre> |
+
+
+
+## `<input type=number>`
+
+A numeric control typically has a text field displaying the value of the control, and a set of up/down buttons that can be used to change the value. The buttons often have an "arrow" glyph, which should be considered a "foreground" element, while any shaded background on the buttons should be considered "background" elements.
+
+
+| Sample | CSS |
+|--------|-----|
+| ![Number](proposal_files/number.png) | <pre>accent-color: darkgrey lightgrey;</pre> |
+
+
+## `<input type=search>`
+
+A search box is typically rendered in almost the same way as a normal text box. In some cases, a "clear" widget/button is provided, to allow the user to clear the search box. In that case, the widget/button should be considered "foreground", and any shaded background behind the widget should be considered "background".
+
+
+| Sample | CSS |
+|--------|-----|
+| ![Search](proposal_files/search.png) | <pre>accent-color: blue white;</pre> |
+
+
+## `<input type=password>`
+
+A password control is typically rendered in almost the same way as a normal text box. In some cases, a "clear" widget/button is provided, to allow the user to clear the search box. In other cases, a "reveal/hide" widget/button is provided to alternatively show or hide the displayed password. In both of these cases, the "clear" or "reveal" widget/button glyph should be considered "foreground", while any shaded background behind the widget should be considered "background".
+
+| Sample | CSS |
+|--------|-----|
+| ![Password](proposal_files/password.png) | <pre>color: red;<br>accent-color: cyan;</pre> |
+
+
+
+## `<input type=text|email|tel|url|...>`
+
+Basic text fields (including email, telephone, etc.) are typically rendered as plain text controls, without any additional accents. In the case that accents are provided, the guidance above (for other control types) should be used to judge whether they are "foreground" or "background" accents.
+
+| Sample | CSS |
+|--------|-----|
+| ![Text](proposal_files/text.png) | N/A |
 
