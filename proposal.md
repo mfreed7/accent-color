@@ -2,13 +2,13 @@
 # CSS 'accent-color' Proposal
 
 Mason Freed</p>
-July 28, 2020</p>
+July 29, 2020</p>
 
 <br>
 
 As discussed on [CSSWG Issue 5187](https://github.com/w3c/csswg-drafts/issues/5187), and at the [July 1, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-652700033) and [July 22, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-662570409) CSSWG meetings, there is a desire to expand the stylability of form control elements, in particular by allowing the specification of the “accent color” for various elements. A prior [study](study.md) was also performed to help guide the discussion.
 
-This proposal is the result of those discussions.
+This proposal is a result of those discussions.
 
 
 
