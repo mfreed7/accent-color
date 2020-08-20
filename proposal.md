@@ -2,11 +2,11 @@
 # CSS 'accent-color' Proposal
 
 Mason Freed</p>
-July 31, 2020</p>
+August 19, 2020</p>
 
 <br>
 
-As discussed on [CSSWG Issue 5187](https://github.com/w3c/csswg-drafts/issues/5187), and at the [July 1, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-652700033) and [July 22, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-662570409) CSSWG meetings, there is a desire to expand the stylability of form control elements, in particular by allowing the specification of the “accent color” for various elements. A prior [study](study.md) was also performed to help guide the discussion.
+As discussed on [CSSWG Issue 5187](https://github.com/w3c/csswg-drafts/issues/5187), and at the [July 1, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-652700033), [July 22, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-662570409), and [August 19, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-676546952) CSSWG meetings, there is a desire to expand the stylability of form control elements, in particular by allowing the specification of the “accent color” for various elements. A prior [study](study.md) was also performed to help guide the discussion.
 
 This proposal is a result of those discussions.
 
@@ -257,4 +257,96 @@ Basic text fields (including email, telephone, etc.) are typically rendered as p
 | Sample | CSS |
 |--------|-----|
 | ![Text](proposal_files/text.png) | N/A |
+
+
+
+# Existing Control Examples
+
+This section shows visual samples of several different controls across various browsers, platforms, and eras (e.g. 2000's). The intention of presenting these examples is to provide an easy way for people to evaluate the spec text and per-controls guidance above in the context of existing controls.
+
+Several "variations" are also shown for each control, pulled from the Mac operating system. One is with Dark Mode enabled, and the other is with the Accent Color system setting changed to a non-default color.
+
+When viewing these examples, an interesting way to think about them is from the point of view of a developer, trying to get **all** of them to look as close to "the same" on their site. With the proposed `accent-color` spec above, would you be able to do it?
+
+*Note*: The particular selections of browsers, platforms, eras, and controls were made in an attempt to show adequate diversity, while not being an exhaustive list, and while being as efficient as possible for me to collate. I have likely left out many important browsers and platforms. If there is a particular browser/platform/era/control combination that is not *represented* by a similar element in the lists below, please bring that to my attention and I can add it.
+
+
+## `<input type=checkbox>`
+
+| Browser   | Platform| Variation    | Sample |
+|-----------|---------|--------------| :---:  |
+| Chrome 81 | Windows |              | ![Text](proposal_files/Chrome81/checkbox.png) |
+| Chrome 83 | Windows | (Forms Refresh) | ![Text](proposal_files/Chrome83/checkbox.png) |
+| Safari 13 | Mac     |              | ![Text](proposal_files/Safari/checkbox.png) |
+| Firefox 79| Windows |              | ![Text](proposal_files/Firefox/checkbox.png) |
+| Chrome 86 | Windows | Dark Mode    | ![Text](proposal_files/Chrome86_dark/checkbox.png) |
+| Safari 13 | Mac     | Dark Mode    | ![Text](proposal_files/Safari_dark/checkbox.png) |
+| Safari 13 | Mac     | Pink Accent Color | ![Text](proposal_files/Safari_pink/checkbox.png) |
+| Firefox 32| Windows | 2014         | ![Text](proposal_files/Firefox_32/checkbox.png) |
+| "Aqua"    | Mac     | 2000         | ![Text](proposal_files/Aqua/checkbox.png) |
+| Snow Leopard | Mac  | 2009         | ![Text](proposal_files/Snow_leopard/checkbox.png) |
+
+
+## `<input type=radio>`
+
+| Browser   | Platform| Variation    | Sample |
+|-----------|---------|--------------| :---:  |
+| Chrome 81 | Windows |              | ![Text](proposal_files/Chrome81/radio.png) |
+| Chrome 83 | Windows | (Forms Refresh) | ![Text](proposal_files/Chrome83/radio.png) |
+| Safari 13 | Mac     |              | ![Text](proposal_files/Safari/radio.png) |
+| Firefox 79| Windows |              | ![Text](proposal_files/Firefox/radio.png) |
+| Chrome 86 | Windows | Dark Mode    | ![Text](proposal_files/Chrome86_dark/radio.png) |
+| Safari 13 | Mac     | Dark Mode    | ![Text](proposal_files/Safari_dark/radio.png) |
+| Safari 13 | Mac     | Pink Accent Color | ![Text](proposal_files/Safari_pink/radio.png) |
+| Firefox 32| Windows | 2014         | ![Text](proposal_files/Firefox_32/radio.png) |
+| "Aqua"    | Mac     | 2000         | ![Text](proposal_files/Aqua/radio.png) |
+| Snow Leopard | Mac  | 2009         | ![Text](proposal_files/Snow_leopard/radio.png) |
+
+
+## `<select>`
+
+| Browser   | Platform| Variation    | Sample |
+|-----------|---------|--------------| :---:  |
+| Chrome 81 | Windows |              | ![Text](proposal_files/Chrome81/select.png) |
+| Chrome 83 | Windows | (Forms Refresh) | ![Text](proposal_files/Chrome83/select.png) |
+| Safari 13 | Mac     |              | ![Text](proposal_files/Safari/select.png) |
+| Firefox 79| Windows |              | ![Text](proposal_files/Firefox/select.png) |
+| Chrome 86 | Windows | Dark Mode    | ![Text](proposal_files/Chrome86_dark/select.png) |
+| Safari 13 | Mac     | Dark Mode    | ![Text](proposal_files/Safari_dark/select.png) |
+| Safari 13 | Mac     | Pink Accent Color | ![Text](proposal_files/Safari_pink/select.png) |
+| Firefox 32| Windows | 2014         | ![Text](proposal_files/Firefox_32/select.png) |
+| "Aqua"    | Mac     | 2000         | ![Text](proposal_files/Aqua/select.png) |
+| Snow Leopard | Mac  | 2009         | ![Text](proposal_files/Snow_leopard/select.png) |
+
+
+## `<input type=date>`
+
+| Browser   | Platform| Variation    | Sample |
+|-----------|---------|--------------| :---:  |
+| Chrome 81 | Windows |              | ![Text](proposal_files/Chrome81/date.png) |
+| Chrome 83 | Windows | (Forms Refresh) | ![Text](proposal_files/Chrome83/date.png) |
+| Safari 13 | Mac     |              | ![Text](proposal_files/Safari/date.png) |
+| Firefox 79| Windows |              | ![Text](proposal_files/Firefox/date.png) |
+| Chrome 86 | Windows | Dark Mode    | ![Text](proposal_files/Chrome86_dark/date.png) |
+| Safari 13 | Mac     | Dark Mode    | ![Text](proposal_files/Safari_dark/date.png) |
+| Safari 13 | Mac     | Pink Accent Color | ![Text](proposal_files/Safari_pink/date.png) |
+| Firefox 32| Windows | 2014         | ![Text](proposal_files/Firefox_32/date.png) |
+| Snow Leopard | Mac  | 2009         | ![Text](proposal_files/Snow_leopard/date.png) |
+
+
+## `<button>`
+
+| Browser   | Platform| Variation    | Sample |
+|-----------|---------|--------------| :---:  |
+| Chrome 81 | Windows |              | ![Text](proposal_files/Chrome81/button.png) |
+| Chrome 83 | Windows | (Forms Refresh) | ![Text](proposal_files/Chrome83/button.png) |
+| Safari 13 | Mac     |              | ![Text](proposal_files/Safari/button.png) |
+| Firefox 79| Windows |              | ![Text](proposal_files/Firefox/button.png) |
+| Chrome 86 | Windows | Dark Mode    | ![Text](proposal_files/Chrome86_dark/button.png) |
+| Safari 13 | Mac     | Dark Mode    | ![Text](proposal_files/Safari_dark/button.png) |
+| Safari 13 | Mac     | Pink Accent Color | ![Text](proposal_files/Safari_pink/button.png) |
+| Firefox 32| Windows | 2014         | ![Text](proposal_files/Firefox_32/button.png) |
+| "Aqua"    | Mac     | 2000         | ![Text](proposal_files/Aqua/button.png) |
+| Snow Leopard | Mac  | 2009         | ![Text](proposal_files/Snow_leopard/button.png) |
+
 
