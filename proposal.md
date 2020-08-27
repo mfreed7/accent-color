@@ -2,11 +2,11 @@
 # CSS 'accent-color' Proposal
 
 Mason Freed</p>
-August 19, 2020</p>
+August 27, 2020</p>
 
 <br>
 
-As discussed on [CSSWG Issue 5187](https://github.com/w3c/csswg-drafts/issues/5187), and at the [July 1, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-652700033), [July 22, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-662570409), and [August 19, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-676546952) CSSWG meetings, there is a desire to expand the stylability of form control elements, in particular by allowing the specification of the “accent color” for various elements. A prior [study](study.md) was also performed to help guide the discussion.
+As discussed on [CSSWG Issue 5187](https://github.com/w3c/csswg-drafts/issues/5187), and at the [July 1, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-652700033), [July 22, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-662570409), [August 19, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-676546952), and [August 26, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-680996476) CSSWG meetings, there is a desire to expand the stylability of form control elements, in particular by allowing the specification of the “accent color” for various elements.
 
 This proposal is a result of those discussions.
 
@@ -24,8 +24,8 @@ This proposal is a result of those discussions.
 <b>Canonical order</b>: per grammar
 <b>Animation type</b>: by computed value type
 
-The ‘accent-color' CSS property sets the color of the “accent” parts or pieces of
-form control elements. The first provided &lt;color> value is to be used for
+The ‘accent-color' CSS property sets the color of the “accent” parts or pieces
+of form control elements. The first provided &lt;color> value is to be used for
 "primary" accent elements. If a second &lt;color> value is provided, that color
 should be used for "contrasting" accent elements.  The third and subsequent
 colors are only used on some form control elements in some cases, for additional
@@ -34,10 +34,10 @@ colors are only used on some form control elements in some cases, for additional
 If any color is not provided, or if 'auto' is provided for any color value, then
 the UA should attempt to select an appropriate color which offers good contrast
 and visibility when paired with remaining provided colors, if any. In selecting
-'auto' colors, if the operating system provides an “Accent Color” or similar user
-setting, the UA is encouraged to respect that setting as much as possible. The UA
-may use a similar, though not identical, color in some cases, for example to
-enhance contrast or accessibility.
+'auto' colors, if the operating system provides an “Accent Color” or similar
+user setting, the UA is encouraged to respect that setting as much as possible.
+The UA may use a similar, though not identical, color in some cases, for example
+to enhance contrast or accessibility.
 
 In limited circumstances, it is permissable for user agents to render the accent
 parts of some controls using different colors than those specified by
@@ -48,29 +48,89 @@ render the checkbox glyph in either white or black; in this case, the selection
 of white or black should depend on the 'accent-color' value, e.g. using the
 luminosity of the provided color.
 
-Not all form elements contain “accent” parts, and not all user agents use the same
-“accent” parts in exactly the same way for the same form control. However, the
-intention is that if the same or similar accent parts exist on a given form
-element, it should be associated with the "primary" or "contrasting" colors in the
-same way across user agents. This is important to ensure good interop of the
+Not all form elements contain “accent” parts, and not all user agents use the
+same “accent” parts in exactly the same way for the same form control. However,
+the intention is that if the same or similar accent parts exist on a given form
+element, it should be associated with the "primary" or "contrasting" colors in
+the same way across user agents. This is important to ensure good interop of the
 'accent-color' property. For that reason, there is a table of form elements
 provided below, which serves as guidance on the various accent parts for each
 control. While the table is not normative, it is intended to provide some
 alignment and uniformity of implementation across user agents.
 
 The <b>text content</b> of form control elements is explicitly <b>not</b> included in the set
-of “accent” parts, as text content is already controlled by the <a href="https://drafts.csswg.org/css-color/#the-color-property">'color'</a> property.
-In addition, the <a href="https://drafts.csswg.org/css-backgrounds-3/#background-color">'background-color'</a> property is often used to control the
-rendering for some background parts of form controls - those parts are similarly
-not included in the set of "accent" parts that are subject to control via the
-`accent-color` property.
+of “accent” parts, as text content is already controlled by the <a href="https://drafts.csswg.org/css-color/#the-color-property">'color'</a>
+property. In addition, the <a href="https://drafts.csswg.org/css-backgrounds-3/#background-color">'background-color'</a> property is often used to control
+the rendering for some background parts of form controls - those parts are
+similarly not included in the set of "accent" parts that are subject to control
+via the `accent-color` property.
 </pre>
 
 
 
+
+
+# Motivation and Intent
+
+This section is non-normative.
+
+In implementing `accent-color`, there are two competing/conflicting goals:
+1. **Encourage interoperability** among browsers. It is important that developers
+be able to expect similar, if not the same, behavior across browsers.
+2. **Encourage** (and do not constrain) browser vendors' **innovation** of form
+control elements.
+
+The goal of interoperability pushes this solution towards a more strict
+specification of exactly how to use each `accent-color` value on each form
+control element. However, the goal of allowing innovation pushes this solution
+**away** from strict specifications for how each form control looks or acts.
+This specification attempts to provide a good middle ground, which maximizes
+interoperability while minimizing constraints to innovation.
+
+The general methodology for achieving the above compromise is to examine the set
+of existing form control elements ([as of
+2020](#existing-control-examples-as-of-2020)), and agree on the *basics* of the
+way `accent-color` is applied to each of those existing controls. It is
+*explicitly* recognized that each browser provides different implementations of
+each form control, with their own look and feel. This spec does not try to
+eliminate those differences. However, it does try to provide some level of
+uniformity and interoperability, where commonalities exist.
+
+This will require judgement when applying the recommendations to new or existing
+form controls. The goal would be to adhere to the *spirit* of this spec as much
+as possible. For example, if the guidance states that an `accent-color` value
+should apply to a particular accent part, and the browser implementation of that
+part uses a gradient fill rather than a single color, then there may be multiple
+ways to "use" the `accent-color` value to affect the gradient rendering of that
+part. The goal would be to match the guidance where it makes sense, and when
+possible. That might mean replacing the gradient with a solid fill, or it might
+mean changing the endpoint values of the gradient to match the `accent-color`
+value *in aggregate*. Or it might mean another behavior entirely. The point is
+that the guidance should be consulted and used as input in determining how to
+proceed.
+
+Further, this spec is careful to not **require** exact conformance of each form
+control with the `accent-color` spec. It merely encourages browsers to follow
+the guidance for form controls elements that are "close enough" to the existing
+set of controls. For brand new paradigms, input surfaces, control types, etc.,
+this spec does not attempt to limit innovation. If there are similar **parts**
+of these new-paradigm controls, then as much as possible/reasonable, those parts
+should be guided by this spec. But this should not be seen as any limitation on
+innovation.
+
+To assist in characterizing "close enough" as it relates to the accent parts of
+form control elements, the [Existing Control
+Examples](#existing-control-examples-as-of-2020) section of this document
+includes many examples of several control types, pulled from different browsers,
+operating systems, and time periods. Except where noted, each of the control
+examples within each group should be considered "close enough" to the group that
+the guidance for that group should apply.
+
 # Per-Control Guidance
 
-This section is non-normative. It describes the potential accent parts for each control, and whether those parts should be styled with the "primary", "contrasting", or "additional" `accent-color` colors. If a given form control on a given user agent has substantially different accent parts, such that the descriptions below do not apply, then care should be taken to attempt to align those parts with the described set, so that developers using `accent-color` will get predictable, interoperable results as much as possible. Note also that some of the described accent parts will not exist on all implementations - in this situation, those elements can be disregarded in the descriptions below.
+This section is non-normative.
+
+It describes the potential accent parts for each control, and whether those parts should be styled with the "primary", "contrasting", or "additional" `accent-color` colors. If a given form control on a given user agent has substantially different accent parts, such that the descriptions below do not apply, then care should be taken to attempt to align those parts with the described set, so that developers using `accent-color` will get predictable, interoperable results as much as possible. Note also that some of the described accent parts will not exist on all implementations - in this situation, those elements can be disregarded in the descriptions below.
 
 ## `<input type=checkbox>`
 
@@ -260,13 +320,11 @@ Basic text fields (including email, telephone, etc.) are typically rendered as p
 
 
 
-# Existing Control Examples
+# Existing Control Examples (as of 2020)
 
 This section shows visual samples of several different controls across various browsers, platforms, and eras (e.g. 2000's). The intention of presenting these examples is to provide an easy way for people to evaluate the spec text and per-controls guidance above in the context of existing controls.
 
 Several "variations" are also shown for each control, pulled from the Mac operating system. One is with Dark Mode enabled, and the other is with the Accent Color system setting changed to a non-default color.
-
-When viewing these examples, an interesting way to think about them is from the point of view of a developer, trying to get **all** of them to look as close to "the same" on their site. With the proposed `accent-color` spec above, would you be able to do it?
 
 *Note*: The particular selections of browsers, platforms, eras, and controls were made in an attempt to show adequate diversity, while not being an exhaustive list, and while being as efficient as possible for me to collate. I have likely left out many important browsers and platforms. If there is a particular browser/platform/era/control combination that is not *represented* by a similar element in the lists below, please bring that to my attention and I can add it.
 
