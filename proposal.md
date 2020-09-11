@@ -2,7 +2,7 @@
 # CSS 'accent-color' Proposal
 
 Mason Freed</p>
-August 27, 2020</p>
+September 11, 2020</p>
 
 <br>
 
