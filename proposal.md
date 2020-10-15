@@ -4,6 +4,8 @@
 Mason Freed</p>
 September 11, 2020</p>
 
+# [[[ Note: This proposal has been [abandoned](https://github.com/w3c/csswg-drafts/issues/5480#issuecomment-709542140). ]]]
+
 <br>
 
 As discussed on [CSSWG Issue 5187](https://github.com/w3c/csswg-drafts/issues/5187), and at the [July 1, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-652700033), [July 22, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-662570409), [August 19, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-676546952), and [August 26, 2020](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-680996476) CSSWG meetings, there is a desire to expand the stylability of form control elements, in particular by allowing the specification of the “accent color” for various elements.
