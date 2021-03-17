@@ -2,9 +2,11 @@
 # CSS 'accent-color' Proposal
 
 Mason Freed</p>
-September 11, 2020</p>
+March 17, 2021</p>
 
-# [[[ Note: This proposal has been [abandoned](https://github.com/w3c/csswg-drafts/issues/5480#issuecomment-709542140). ]]]
+# Note: This specific proposal has been [abandoned](https://github.com/w3c/csswg-drafts/issues/5480#issuecomment-709542140). However, a very similar specification has now been [landed](https://github.com/w3c/csswg-drafts/issues/5187#issuecomment-800651916) ([spec link](https://www.w3.org/TR/css-ui-4/#widget-accent)) and implementation is [underway](https://crbug.com/1092093), at least in Chromium.
+
+## Old proposal below...
 
 <br>
 
